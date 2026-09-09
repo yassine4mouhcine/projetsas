@@ -201,8 +201,25 @@ console.log(`=================================
 choix= Number(prompt("entrer votre choix :"))
 switch(choix){
     case 1:
+        console.log("=== TRAJETS DISPONIBLES ===")
         for(let i=0;i<trips.length;i++){
-            console.log(trips[i])
+            console.log(`
+#${trips[i].id} ${trips[i].departure} → ${trips[i].destination}
+
+Départ : ${trips[i].departureTime}
+Arrivée : ${trips[i].arrivalTime}
+Prix : ${trips[i].price} DH
+Places disponibles : ${trips[i].availableSeats}
+        `)
+
+
+
+
+
+
+
+
+
         }
         break
         case 2:
