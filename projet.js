@@ -246,14 +246,40 @@ else{
 console.log(tickets[i])
     }
 }
+}
+function annuler(){
+let idt= Number(prompt("entrer Identifiant du ticket :"))//bax n9arno bih 
+let ticket 
+let trip
+let index
+for(let i=0;i<tickets.length;i++){
+    if(tickets[i].id===idt){
+        ticket =tickets[i]
+        index = i
+    }
+    
+    
+}
+if(ticket===undefined){
+        console.log("Ticket introuvable")
+    }
+for(let i=0;i<trips.length;i++){
+    if(trips[i].id===ticket.IdTrip){
+       trip=trips[i]
+        tickets.splice(index, 1);
 
+        trips[i].availableSeats++
 
+        console.log("Ticket annulé avec succès!!!!!");
+    }
+}
 
 
 
 
 
 }
+
 
 let choix;
 while (choix !== 0) {
@@ -283,7 +309,7 @@ while (choix !== 0) {
             afficheticket()
             break
         case 4:
-            console.log("Annuler un ticket")
+            annuler()
             break
         case 5:
             console.log("Rechercher un ticket")
