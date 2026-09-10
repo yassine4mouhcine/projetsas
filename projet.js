@@ -231,7 +231,7 @@ function Acheter() {
         
         console.log("Ticket acheté avec succès")
 
-        console.log(`trajet#${ticket.id}`)
+        console.log(`Ticket#${ticket.id}`)
         console.log(`Passager :${ticket.passengerName}`)
         console.log(`Trajet : ${trip.departure} → ${trip.destination}`)
         console.log(`Place : ${ticket.seatNumber}`)
@@ -279,6 +279,20 @@ for(let i=0;i<trips.length;i++){
 
 
 }
+function rechercher(){
+let nom = prompt("entrer un nom pour le rechercher : ")
+let check=false
+for(let i=0;i<tickets.length;i++){
+    if(tickets[i].passengerName.toLowerCase()===nom.toLowerCase()){
+        console.log(tickets[i])
+        check=true
+    }  
+}
+if(check===false){
+        console.log("il na aucun ticket avec cette nom")
+    }
+}
+
 
 
 let choix;
@@ -312,7 +326,7 @@ while (choix !== 0) {
             annuler()
             break
         case 5:
-            console.log("Rechercher un ticket")
+            rechercher()
             break
         case 6:
             console.log("Filtrer les trajets")
@@ -330,3 +344,4 @@ while (choix !== 0) {
 
 
 }
+
