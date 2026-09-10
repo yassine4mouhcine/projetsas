@@ -236,6 +236,24 @@ function Acheter() {
         console.log(`Trajet : ${trip.departure} → ${trip.destination}`)
         console.log(`Place : ${ticket.seatNumber}`)
         console.log(`Prix : ${ticket.price} DH`)}
+function afficheticket(){
+console.log(`=== TICKETS ===`)
+if(tickets.length===0){
+    console.log("Aucun ticket enregistré.")
+}
+else{
+    for(let i=0;i<tickets.length;i++){
+console.log(tickets[i])
+    }
+}
+
+
+
+
+
+
+
+}
 
 let choix;
 while (choix !== 0) {
@@ -262,7 +280,7 @@ while (choix !== 0) {
             Acheter()
             break
         case 3:
-            console.log("Afficher les tickets")
+            afficheticket()
             break
         case 4:
             console.log("Annuler un ticket")
