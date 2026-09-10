@@ -292,7 +292,23 @@ if(check===false){
         console.log("il na aucun ticket avec cette nom")
     }
 }
+function filtrer(){
+let ville = prompt("Ville de départ : ")
+for(let i=0;i<trips.length;i++){
+    if(trips[i].departure.toLowerCase()===ville.toLowerCase()){
+        console.log(`${ville}→${trips[i].destination} : ${trips[i].price}DH` )
+    }
+}
 
+
+
+
+
+
+
+
+
+}
 
 
 let choix;
@@ -329,7 +345,7 @@ while (choix !== 0) {
             rechercher()
             break
         case 6:
-            console.log("Filtrer les trajets")
+            filtrer()
             break
         case 7:
             console.log("Trier les trajets")
