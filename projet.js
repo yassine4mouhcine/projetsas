@@ -1,5 +1,6 @@
 
 const prompt = require('prompt-sync')()
+const tickets = []
 const trips = [
     {
         id: 1,
@@ -181,10 +182,64 @@ const trips = [
         price: 95,
         availableSeats: 50
     }]
+let count = 0
+function affiche() {
+    console.log("=== TRAJETS DISPONIBLES ===")
+    for (let i = 0; i < trips.length; i++) {
+        console.log(`
+#${trips[i].id} ${trips[i].departure} → ${trips[i].destination}
+
+Départ : ${trips[i].departureTime}
+Arrivée : ${trips[i].arrivalTime}
+Prix : ${trips[i].price} DH
+Places disponibles : ${trips[i].availableSeats}
+        `)
+    }
+}
+function Acheter() {
+    console.log("Acheter un ticket")
+    let nome = prompt("Nom du passager : ")
+    let tripId = Number(prompt("Identifiant du trajet : "))
+    let trip
+    let ticket
+    for (let i = 0; i < trips.length; i++) {
+        if (trips[i].id === tripId) {
+            trip = trips[i]
+            
+        }}
+        console.log(trip)
+    
+    if (trip === undefined) {
+        console.log("Trajet introuvable")
+    }
+    else if (trip.availableSeats === 0) {
+        console.log("train complet")
+    }
+    else {
+        
+        count++
+        ticket = {
+            id: count,
+            passengerName: nome,
+            IdTrip: tripId,
+            seatNumber: 51 - trip.availableSeats ,
+            price: trip.price
+          
+        }}
+        tickets.push(ticket)
+        trip.availableSeats--
+        
+        console.log("Ticket acheté avec succès")
+
+        console.log(`trajet#${ticket.id}`)
+        console.log(`Passager :${ticket.passengerName}`)
+        console.log(`Trajet : ${trip.departure} → ${trip.destination}`)
+        console.log(`Place : ${ticket.seatNumber}`)
+        console.log(`Prix : ${ticket.price} DH`)}
 
 let choix;
-while(choix!==0){
-console.log(`=================================
+while (choix !== 0) {
+    console.log(`=================================
 
         RAILWAY MANAGER
 
@@ -198,55 +253,36 @@ console.log(`=================================
 6. Filtrer les trajets
 7. Trier les trajets
 0. Quitter`)
-choix= Number(prompt("entrer votre choix :"))
-switch(choix){
-    case 1:
-        console.log("=== TRAJETS DISPONIBLES ===")
-        for(let i=0;i<trips.length;i++){
-            console.log(`
-#${trips[i].id} ${trips[i].departure} → ${trips[i].destination}
-
-Départ : ${trips[i].departureTime}
-Arrivée : ${trips[i].arrivalTime}
-Prix : ${trips[i].price} DH
-Places disponibles : ${trips[i].availableSeats}
-        `)
-
-
-
-
-
-
-
-
-
-        }
-        break
+    choix = Number(prompt("entrer votre choix :"))
+    switch (choix) {
+        case 1:
+            affiche();
+            break
         case 2:
-          console.log("Acheter un ticket")
-        break
-         case 3:
-console.log("Afficher les tickets")
-        break
-          case 4:
-console.log("Annuler un ticket")
-        break
-            case 5:
-console.log("Rechercher un ticket")
-        break
+            Acheter()
+            break
+        case 3:
+            console.log("Afficher les tickets")
+            break
+        case 4:
+            console.log("Annuler un ticket")
+            break
+        case 5:
+            console.log("Rechercher un ticket")
+            break
         case 6:
-console.log("Filtrer les trajets")
-        break
+            console.log("Filtrer les trajets")
+            break
         case 7:
-console.log("Trier les trajets")
-        break
+            console.log("Trier les trajets")
+            break
         case 0:
-console.log("Quiter")
-        break
-        default :
-        console.log("entrer un nombre de 0 a 7")
-        break
-}
+            console.log("Quiter")
+            break
+        default:
+            console.log("entrer un nombre de 0 a 7")
+            break
+    }
 
 
 }
