@@ -1,6 +1,36 @@
 
 const prompt = require('prompt-sync')()
-const tickets = []
+const tickets = [{id: 1,
+            passengerName:  "yassine",
+            IdTrip: 1,
+            seatNumber: 1 ,
+            price: 25},
+    {       id: 2,
+            passengerName: "said",
+            IdTrip: 1,
+            seatNumber: 2 ,
+            price: 25},
+    {       id: 3,
+            passengerName: "aymane",
+            IdTrip: 7,
+            seatNumber: 1 ,
+            price: 150},
+    {id: 4,
+            passengerName: "karim",
+            IdTrip: 7,
+            seatNumber: 2 ,
+            price: 150},
+    {        id: 5,
+            passengerName: "salma",
+            IdTrip: 7,
+            seatNumber: 3 ,
+            price: 150},
+    {id: 6,
+            passengerName: "morad",
+            IdTrip: 1,
+            seatNumber: 3 ,
+            price: 25},
+]
 const trips = [
     {
         id: 1,
@@ -9,7 +39,7 @@ const trips = [
         departureTime: "07:30",
         arrivalTime: "08:30",
         price: 25,
-        availableSeats: 50
+        availableSeats: 47
     },
     {
         id: 2,
@@ -63,7 +93,7 @@ const trips = [
         departureTime: "12:00",
         arrivalTime: "16:00",
         price: 150,
-        availableSeats: 50
+        availableSeats: 47
     },
     {
         id: 8,
@@ -182,7 +212,7 @@ const trips = [
         price: 95,
         availableSeats: 50
     }]
-let count = 0
+let count = 6
 function affiche() {
     console.log("=== TRAJETS DISPONIBLES ===")
     for(let i=0; i< trips.length;i++){
@@ -221,18 +251,21 @@ function Acheter() {
             IdTrip: idt,
             seatNumber: 51 - trip.availableSeats ,
             price: trip.price
-          
-        }}
+        }
         tickets.push(ticket)
         trip.availableSeats--
-        
         console.log("Ticket acheté avec succès")
 
-        console.log(`Ticket#${ticket.id}`)
-        console.log(`Passager :${ticket.passengerName}`)
-        console.log(`Trajet : ${trip.departure} → ${trip.destination}`)
-        console.log(`Place : ${ticket.seatNumber}`)
-        console.log(`Prix : ${ticket.price} DH`)}
+        console.log(`Ticket#${ticket.id}
+        Passager :${ticket.passengerName}
+        Trajet : ${trip.departure} → ${trip.destination}
+        Place : ${ticket.seatNumber}
+        Prix : ${ticket.price} DH`)}
+    }
+        
+        
+        
+        
 function afficheticket(){
 console.log(`=== TICKETS ===`)
 if(tickets.length===0){
@@ -240,9 +273,17 @@ if(tickets.length===0){
 }
 else{
     for(let i=0;i<tickets.length;i++){
+        for (let j=0;j<trips.length;j++)//trip li lan gh ticket 
+        {
+           if(trips[j].id===tickets[i].IdTrip) 
+            {
+            var depart =trips[j].departure// 3la 9bl scope
+            var  dest = trips[j].destination
+           }
+        }
 console.log(`Ticket#${tickets[i].id}
     passager :${tickets[i].passengerName}
-    trajet : ${trips[i].departure} →${trips[i].destination}
+    trajet : ${depart} →${dest}
     place : ${tickets[i].seatNumber}
     Prix : ${tickets[i].price}DH`)
     }
@@ -282,12 +323,18 @@ else{
 
 
 }
-function rechercher(){
+function rechercherparnom(){
 let nom = prompt("entrer un nom pour le rechercher : ")
 let check=false
 for(let i=0;i<tickets.length;i++){
     if(tickets[i].passengerName.toLowerCase()===nom.toLowerCase()){
-        console.log(tickets[i])
+        console.log(`ticket#${tickets[i].id}
+            Passager:${tickets[i].passengerName.toLowerCase()}
+            trajet : ${trips[i].departure}-->${trips[i].destination} 
+            place : ${tickets[i].seatNumber}
+            prix : ${tickets[i].price}DH
+            
+            `)
         check=true
     }  
 }
@@ -320,6 +367,7 @@ for(let i=0;i<trips.length;i++){
     
 
 }
+function statistique(){}
 
 
 let choix;
@@ -353,7 +401,7 @@ while (choix !== 0) {
             annuler()
             break
         case 5:
-            rechercher()
+            rechercherparnom()
             break
         case 6:
             filtrer()
