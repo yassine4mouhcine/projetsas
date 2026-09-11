@@ -309,6 +309,24 @@ for(let i=0;i<trips.length;i++){
 
 
 }
+function trie(){
+let swap
+for(let i=0;i<trips.length;i++){
+    for(let j=i+1;j<trips.length;j++){
+        if(trips[i].price>trips[j].price){
+            swap=trips[i]
+            trips[i]=trips[j]
+            trips[j]=swap
+        }
+        
+    }
+    console.log(`${trips[i].departure} → ${trips[i].destination} : ${trips[i].price}DH`)
+}
+
+
+    
+
+}
 
 
 let choix;
@@ -348,7 +366,7 @@ while (choix !== 0) {
             filtrer()
             break
         case 7:
-            console.log("Trier les trajets")
+            trie()
             break
         case 0:
             console.log("Quiter")
