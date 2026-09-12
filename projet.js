@@ -1,36 +1,6 @@
 
 const prompt = require('prompt-sync')()
-const tickets = [{id: 1,
-            passengerName:  "yassine",
-            IdTrip: 1,
-            seatNumber: 1 ,
-            price: 25},
-    {       id: 2,
-            passengerName: "said",
-            IdTrip: 1,
-            seatNumber: 2 ,
-            price: 25},
-    {       id: 3,
-            passengerName: "aymane",
-            IdTrip: 7,
-            seatNumber: 1 ,
-            price: 150},
-    {id: 4,
-            passengerName: "karim",
-            IdTrip: 7,
-            seatNumber: 2 ,
-            price: 150},
-    {        id: 5,
-            passengerName: "salma",
-            IdTrip: 7,
-            seatNumber: 3 ,
-            price: 150},
-    {id: 6,
-            passengerName: "morad",
-            IdTrip: 1,
-            seatNumber: 3 ,
-            price: 25},
-]
+const tickets =[]
 const trips = [
     {
         id: 1,
@@ -39,7 +9,7 @@ const trips = [
         departureTime: "07:30",
         arrivalTime: "08:30",
         price: 25,
-        availableSeats: 47
+        availableSeats: 50
     },
     {
         id: 2,
@@ -93,7 +63,7 @@ const trips = [
         departureTime: "12:00",
         arrivalTime: "16:00",
         price: 150,
-        availableSeats: 47
+        availableSeats: 50
     },
     {
         id: 8,
@@ -212,7 +182,7 @@ const trips = [
         price: 95,
         availableSeats: 50
     }]
-let count = 6
+let count = 0
 function affiche() {
     console.log("=== TRAJETS DISPONIBLES ===")
     for(let i=0; i< trips.length;i++){
@@ -350,24 +320,63 @@ for(let i=0;i<trips.length;i++){
     }
 }}
 function trie(){
-let swap
+let temp
 for(let i=0;i<trips.length;i++){
     for(let j=i+1;j<trips.length;j++){
         if(trips[i].price>trips[j].price){
-            swap=trips[i]
+            temp=trips[i]
             trips[i]=trips[j]
-            trips[j]=swap
+            trips[j]=temp
         }
         
     }
     console.log(`${trips[i].departure} → ${trips[i].destination} : ${trips[i].price}DH`)
 }
+}
+function statistique(){
+    let compteur=0
+for(let i=0;i<tickets.length;i++){
+  compteur++
+}
+console.log(`Nombre total de tickets : ${compteur}`)
 
 
-    
+let somme=0
+for(let i=0;i<tickets.length;i++){
+   somme+=tickets[i].price
+}
+console.log("Chiffre d'affaires total :",+somme,"DH")
+
+let min =tickets[0].availableSeats
+let index 
+let def=50
+for(let i=1;i<tickets.length;i++){
+    if(min>tickets[i].availableSeats){
+min=tickets[i].availableSeats
+index=i
+def-=min
+    }
+}
+
+
+
+
+
+
+
+
+console.log(`Trajet le plus vendu :
+
+
+${tickets[i].departure} → ${tickets[i].destination}
+
+${def}tickets vendus`)
+
+
+
+
 
 }
-function statistique(){}
 
 
 let choix;
@@ -385,6 +394,7 @@ while (choix !== 0) {
 5. Rechercher un ticket
 6. Filtrer les trajets
 7. Trier les trajets
+8.statistique/bonus
 0. Quitter`)
     choix = Number(prompt("entrer votre choix :"))
     switch (choix) {
@@ -408,6 +418,9 @@ while (choix !== 0) {
             break
         case 7:
             trie()
+            break
+        case 8:
+            statistique()
             break
         case 0:
             console.log("Quiter")
